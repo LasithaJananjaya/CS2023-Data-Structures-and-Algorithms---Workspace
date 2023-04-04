@@ -1,7 +1,10 @@
 #include <iostream>
+#include <chrono>
+#include <ctime>
 using namespace std;
+using namespace std::chrono;
 
-#define MAX_SIZE 10 // define maximum size of stack
+#define MAX_SIZE 20 // define maximum size of stack
 
 class Stack {
     private:
@@ -65,17 +68,35 @@ class Stack {
 int main() {
     Stack s;
 
-    s.push(5);
+    auto start = high_resolution_clock::now();
+    
+    s.push(8);
     s.push(10);
+    s.push(5);
+    s.push(11);
     s.push(15);
-
-    s.display(); // display elements in stack
-
+    s.push(23);
+    s.push(6);
+    s.push(18);
+    s.push(20);
+    s.push(17);
+    s.display();
     s.pop();
+    s.pop();
+    s.pop();
+    s.pop();
+    s.pop();
+    s.display();
+    s.push(4);
+    s.push(30);
+    s.push(3);
+    s.push(1);
+    s.display();
 
-    cout << "Top element is " << s.stackTop() << endl;
+    auto end = high_resolution_clock::now();
 
-    s.display(); // display elements in stack
+    auto elapsed_time_ms = duration_cast<microseconds>(end - start);
+    cout << "Time taken by stack_array() in microseconds: " << elapsed_time_ms.count() << endl;
 
     return 0;
 }
